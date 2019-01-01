@@ -209,6 +209,7 @@ include 'koneksi.php';
 						<!-- Order Text -->
 						<div class="order_text">Terimakasih Telah Mengisi Bensinmu dengan SIPBO.</div>
 						<div class="button order_button"><a href="#">Beli Bensin</a></div>
+						<button class = "btn btn-primary" name = "beli2">Beli</button>
 					</div>
 				</div>
 			</div>
@@ -256,3 +257,57 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> kelom
 <script src="js/checkout.js"></script>
 </body>
 </html>
+
+	<?php
+
+		if(isset($_POST["checkout"]))
+		{
+			$id_pelanggan = $_SESSION ["pelanggan"]["id_pelanggan"];
+			$id_ongkir =$_POST["id_ongkir"];
+			$tanggal_pembelian = date("Y-m-d");
+			$alamat_pengiriman = $_POST['alamat_pengiriman'];
+
+			$ambil = $koneksi->query("SELECT * FROM ongkir
+				WHERE id_ongkir = '$id_ongkir'");
+			$arrayongkir = $ambil->fetch_assoc();
+			$nama_kota = $arrayongkir['nama_kota'];
+			$tarif = $arrayongkir['tarif'];
+			
+			$total_pembelian = $totalbelanja+=$tarif;
+
+			//menyimpan data ke tabel pembelian
+			$koneksi->query("INSERT INTO pembelian(id_pelanggan, id_ongkir, tanggal_pembelian, total_pembelian,nama_kota,tarif, alamat_pengiriman)
+				VALUES ('$id_pelanggan','$id_ongkir','$tanggal_pembelian','$total_pembelian','$nama_kota','$tarif','$alamat_pengiriman')");
+
+			//mendapatkan id pembelian barusan
+
+			$id_pembelian_barusan = $koneksi->insert_id;
+
+			foreach($_SESSION["keranjang"] as $id_produk => $jumlah)
+				{
+					///mendapatkan data produk berdasarkan id_produk
+					$ambil= $koneksi->query("SELECT * FROM produk WHERE id_produk = '$id_produk'");
+					$perproduk = $ambil->fetch_assoc();
+
+					$nama = $perproduk['nama_produk'];
+					$harga = $perproduk['harga_produk'];
+					$berat = $perproduk['berat_produk'];
+
+					$subberat = $perproduk['berat_produk']*$jumlah;
+					$subharga = $perproduk['harga_produk']*$jumlah;
+
+					$koneksi->query("INSERT INTO pembelian_produk (id_pembelian,id_produk,nama,harga,berat,subberat,subharga,jumlah)
+						VALUES ('$id_pembelian_barusan', '$id_produk','$nama','$harga','$berat','$subberat','$subharga', '$jumlah')");
+				}
+
+				// mengkosongkan keranjang belanja
+
+				unset($_SESSION["keranjang"]);
+
+				//tampilan dialihkan ke halaman nota, nota dari pembelian tersebut
+
+				echo"<script>alert('pembelian sukses');</script>";
+				echo"<script>location='nota.php?id=$id_pembelian_barusan';</script>";
+		}
+
+		?>

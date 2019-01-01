@@ -164,7 +164,7 @@ session_start();
 				<div class="avds_large_container">
 					<div class="avds_large_content">
 						<div class="avds_title">ABOUT SIPBO</div>
-						<div class="avds_text"></div>
+						<div class="avds_text">Sipbo adalah sebuah sistem penjualan bahan bakar online yang dapat memudahkan para pengendara saat melakukan pengisinan bahan bakar kendaraan</div>
 						<div class="avds_link avds_link_large"><a href="categories.html">See More</a></div>
 					</div>
 				</div>

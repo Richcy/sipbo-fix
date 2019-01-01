@@ -1,6 +1,5 @@
 <?php 
   include 'koneksi.php';
-  session_start();
 
 $id = $_SESSION["id"];
 $query1 = "SELECT * FROM pelanggan WHERE id_pelanggan = '$id'";
@@ -28,7 +27,9 @@ $row = mysqli_fetch_assoc($result1);
 							<nav class="main_nav">
 								<ul>
 									<li><a href="index.php">Home</a>
+									<?php if (isset($_SESSION["status"])== 'login'): ?>
 									<li><a href="checkout.php">Pembayaran</a>
+									<?php endif ?>
 									<li><a href="halamansimulasi.php">Halaman Simulasi</a>
 									
 									
