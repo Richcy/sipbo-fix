@@ -13,15 +13,14 @@ include 'koneksi.php';
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Halaman Login</title>
-  <!-- BOOTSTRAP STYLES-->
-  <link href="styles/css/bootstrap.css" rel="stylesheet" />
-  <!-- FONTAWESOME STYLES-->
-  <link href="styles/css/font-awesome.css" rel="stylesheet" />
-  <!-- CUSTOM STYLES-->
-  <link href="styles/css/custom.css" rel="stylesheet" />
-  <!-- GOOGLE FONTS-->
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Sublime project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="styles/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+  <link rel="stylesheet" type="text/css" href="styles/responsive.css">
 </head>
 <body>
   <div class="container">
@@ -45,25 +44,20 @@ include 'koneksi.php';
             <form role="form" method="post">
              <br />
              <div class="form-group input-group">
-              <span class="input-group-addon"><i class="fa fa-tag"  ></i></span>
-              <input type="text" class="form-control" name="email" />
+              <span class="input-group-addon">@</span>
+              <input type="text" class="form-control" name="email" placeholder="Your Email" />
             </div>
             <div class="form-group input-group">
               <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
-              <input type="password" class="form-control" name="pass" />
+              <input type="password" class="form-control" name="pass" placeholder="Your Password" />
             </div>
-            <div class="form-group">
-              <label class="checkbox-inline">
-                <input type="checkbox" /> Remember me
-              </label>
-              <span class="pull-right">
-               <a href="#" >Forget password ? </a> 
-             </span>
-           </div>
-
-           <button class = "btn btn-primary" name = "login">Login</button>
+            <span class="pull-right">
+              <button class = "btn btn-primary" name = "login">Login</button>
+            </span>
+            <a href="index.php" type="button" class="btn btn-primary">Kembali</a>
            <hr />
-           Not register ? <a href="register.php" >click here </a> 
+             Not register ? <a href="register.php" >click here </a> 
+           
          </form>
 
          <?php

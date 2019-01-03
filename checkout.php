@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include 'koneksi.php'; 
+
 ?>
 
 <!DOCTYPE html>
@@ -263,7 +264,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> kelom
 		if(isset($_POST["checkout"]))
 		{
 			$id_pelanggan = $_SESSION ["pelanggan"]["id_pelanggan"];
-			$id_ongkir =$_POST["id_ongkir"];
 			$tanggal_pembelian = date("Y-m-d");
 			$alamat_pengiriman = $_POST['alamat_pengiriman'];
 
