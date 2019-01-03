@@ -62,87 +62,9 @@ include 'koneksi.php';
 		<div class="container">
 			<div class="row">
 
-				<!-- Billing Info -->
-				<div class="col-lg-6">
-					<div class="billing checkout_section">
-						<div class="section_title">Alamat Lengkap</div>
-						<div class="section_subtitle">Masukan Alamat Lengkap Pengirimanmu</div>
-						<div class="checkout_form_container">
-							<form action="#" id="checkout_form" class="checkout_form">
-								<div class="row">
-									<div class="col-xl-6">
-										<!-- Name -->
-										<label for="checkout_name">Nama depan*</label>
-										<input type="text" id="checkout_name" class="checkout_input" required="required">
-									</div>
-									<div class="col-xl-6 last_name_col">
-										<!-- Last Name -->
-										<label for="checkout_last_name">Nama Belakang*</label>
-										<input type="text" id="checkout_last_name" class="checkout_input" required="required">
-									</div>
-								</div>
-								<div>
-									
-								</div>
-								<div>
-									<!-- Country -->
-									
-								</div>
-								<div>
-									<!-- Address -->
-									<label for="checkout_address">Alamat Lengkap*</label>
-									<input type="text" id="checkout_address" class="checkout_input" required="required">
-									<input type="text" id="checkout_address_2" class="checkout_input checkout_address_2" required="required">
-								</div>
-								<div>
-									<!-- Zipcode -->
-									<label for="checkout_zipcode">Kode Pos*</label>
-									<input type="text" id="checkout_zipcode" class="checkout_input" required="required">
-								</div>
-								<div>
-									<!-- City / Town -->
-									<label for="checkout_city">Kota/Kabupaten*</label>
-									<select name="checkout_city" id="checkout_city" class="dropdown_item_select checkout_input" require="required">
-										<option></option>
-										<option>City</option>
-										<option>City</option>
-										<option>City</option>
-										<option>City</option>
-									</select>
-								</div>
-								<div>
-									<!-- Province -->
-									<label for="checkout_province">Provinsi*</label>
-									<select name="checkout_province" id="checkout_province" class="dropdown_item_select checkout_input" require="required">
-										<option></option>
-										<option>Province</option>
-										<option>Province</option>
-										<option>Province</option>
-										<option>Province</option>
-									</select>
-								</div>
-								<div>
-									<!-- Phone no -->
-									<label for="checkout_phone">No Handphone Penerima*</label>
-									<input type="phone" id="checkout_phone" class="checkout_input" required="required">
-									<div class="button order_button"><a href="#">Kirim</div>
-								</div>
-								<div>
-									<!-- Email -->
-									
-								</div>
-								<div class="checkout_extra">
-									<div>
-										<input type="checkbox" id="checkbox_terms" name="regular_checkbox" class="regular_checkbox" checked="checked">
-										
-										
-									</div>
-									
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
+
+
+				
 
 				<!-- Order Info -->
 
@@ -190,28 +112,60 @@ include 'koneksi.php';
 								</li>
 							</ul>
 						</div>
-
-						<!-- Payment Options -->
-						<div class="payment">
-							<div class="payment_options">
-								<label class="payment_option clearfix">SmartCard
-									<input type="radio" name="radio">
-									<span class="checkmark"></span>
-								</label>
-								<label class="payment_option clearfix">Transfer Bank
-									<input type="radio" name="radio">
-									<span class="checkmark"></span>
-								</label>
-								
-								
-							</div>
-						</div>
+						
 
 						<!-- Order Text -->
 						<div class="order_text">Terimakasih Telah Mengisi Bensinmu dengan SIPBO.</div>
 						<div class="button order_button"><a href="#">Beli Bensin</a></div>
-						<button class = "btn btn-primary" name = "beli2">Beli</button>
+						<?php if (isset($_SESSION["status"])== 'login'): ?>
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Beli</button>
+						<?php elseif (isset($_SESSION["status"])!='login'): ?>
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Pesan</button>
+						<?php endif ?>
+
+						
+
+						
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- konten modal-->
+			<div class="modal-content">
+				<!-- heading modal -->
+				<div class="modal-header">
+					<?php if (isset($_SESSION["status"])== 'login'): ?>
+					<h3>Konfirmasi Pembelian</h3>
+					<?php elseif (isset($_SESSION["status"])!= 'login'): ?>
+					<h3>Konfirmasi Pemesanan</h3>
+					<?php endif ?>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					
+				</div>
+				<!-- body modal -->
+				<div class="modal-body">
+					<?php if (isset($_SESSION["status"])== 'login'): ?>
+					<p>Yakin dengan pembelian ini?</p>
+					<p>Saldo akan berkurang sesuai harga yang tertera</p>
+					<?php elseif (isset($_SESSION["status"])!= 'login'): ?>
+					<p>Yakin dengan pemesanan ini?</p>
+					<?php endif ?>
+				</div>
+				<!-- footer modal -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<form method="post">
+						<?php if (isset($_SESSION["status"])== 'login'): ?>
+						<button class = "btn btn-primary" name = "beli">Beli</button>
+						<?php elseif (isset($_SESSION["status"])!='login'): ?>
+						<button class = "btn btn-primary" name = "pesan">Pesan</button>
+						<?php endif ?>
+					</form>
+					
 				</div>
 			</div>
 		</div>
@@ -219,31 +173,7 @@ include 'koneksi.php';
 
 	<!-- Footer -->
 	
-	<div class="footer_overlay"></div>
-	<footer class="footer">
-		<div class="footer_background" style="background-image:url(images/footer.jpg)"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="footer_content d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
-						<div class="footer_logo"><a href="#">Sublime.</a></div>
-						<div class="copyright ml-auto mr-auto"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> kelompok2 | anjany | Febby | Richcy <a href="https://colorlib.com" target="_blank"></a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
-						<div class="footer_social ml-lg-auto">
-							<ul>
-								<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-</div>
+<?php include 'footer.php'; ?>
 
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="styles/bootstrap4/popper.js"></script>
@@ -260,54 +190,118 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> kelom
 </html>
 
 	<?php
+	include 'randomkode.php';
 
-		if(isset($_POST["checkout"]))
+		if(isset($_POST["beli"]))
 		{
-			$id_pelanggan = $_SESSION ["pelanggan"]["id_pelanggan"];
-			$tanggal_pembelian = date("Y-m-d");
-			$alamat_pengiriman = $_POST['alamat_pengiriman'];
-
-			$ambil = $koneksi->query("SELECT * FROM ongkir
-				WHERE id_ongkir = '$id_ongkir'");
-			$arrayongkir = $ambil->fetch_assoc();
-			$nama_kota = $arrayongkir['nama_kota'];
-			$tarif = $arrayongkir['tarif'];
+			$id_produk = $pecah["id_produk"];
+			$id = $_SESSION["id"];
+			$ambil2 = $sql->query("SELECT * FROM pelanggan 
+						WHERE id_pelanggan='$id'");
+			$pecah = $ambil2->fetch_assoc();
+			$saldo = $pecah["saldo"];
 			
-			$total_pembelian = $totalbelanja+=$tarif;
-
-			//menyimpan data ke tabel pembelian
-			$koneksi->query("INSERT INTO pembelian(id_pelanggan, id_ongkir, tanggal_pembelian, total_pembelian,nama_kota,tarif, alamat_pengiriman)
-				VALUES ('$id_pelanggan','$id_ongkir','$tanggal_pembelian','$total_pembelian','$nama_kota','$tarif','$alamat_pengiriman')");
-
-			//mendapatkan id pembelian barusan
-
-			$id_pembelian_barusan = $koneksi->insert_id;
-
-			foreach($_SESSION["keranjang"] as $id_produk => $jumlah)
+			$id_pelanggan = $_SESSION["id"];
+			
+			$tanggal_pembelian = date("Y-m-d");
+			$kode = $hasil_1;
+			if (isset($_SESSION["uang"]))
 				{
-					///mendapatkan data produk berdasarkan id_produk
-					$ambil= $koneksi->query("SELECT * FROM produk WHERE id_produk = '$id_produk'");
-					$perproduk = $ambil->fetch_assoc();
-
-					$nama = $perproduk['nama_produk'];
-					$harga = $perproduk['harga_produk'];
-					$berat = $perproduk['berat_produk'];
-
-					$subberat = $perproduk['berat_produk']*$jumlah;
-					$subharga = $perproduk['harga_produk']*$jumlah;
-
-					$koneksi->query("INSERT INTO pembelian_produk (id_pembelian,id_produk,nama,harga,berat,subberat,subharga,jumlah)
-						VALUES ('$id_pembelian_barusan', '$id_produk','$nama','$harga','$berat','$subberat','$subharga', '$jumlah')");
+					$totalharga = $jumlah;
+					$totalliter = $subharga;
+				}
+			else if(isset($_SESSION["liter"]))
+				{
+					$totalharga = $subharga;
+					$totalliter = $jumlah;
 				}
 
-				// mengkosongkan keranjang belanja
+			$saldo_skrg = $saldo - $totalharga;
 
-				unset($_SESSION["keranjang"]);
+			if($saldo_skrg > $totalharga)
+			{
+				//menyimpan data ke tabel pembelian
+			$sql->query("INSERT INTO pembelian(id_pelanggan, id_produk, tanggal_pembelian, kode_transaksi,total_pembelian, total_liter)
+				VALUES ('$id_pelanggan','$id_produk','$tanggal_pembelian','$kode','$totalharga','$totalliter')");
+
+			$sql->query("UPDATE pelanggan SET saldo = '$saldo_skrg' WHERE id_pelanggan = '$id'");
+
+				
+
 
 				//tampilan dialihkan ke halaman nota, nota dari pembelian tersebut
 
 				echo"<script>alert('pembelian sukses');</script>";
-				echo"<script>location='nota.php?id=$id_pembelian_barusan';</script>";
+				echo"<script>alert('kode trasaksi anda : $kode');</script>";
+				echo"<script>location='index.php';</script>";
+			}
+			else
+			{
+				echo"<script>alert('pembelian gagal, saldo anda tidak mencukupi');</script>";
+				echo"<script>location='isisaldo.php';</script>";
+			}
 		}
+
+			// mengkosongkan keranjang belanja
+
+				/*unset($_SESSION["keranjang"]);
+				unset($_SESSION["jenis"]);
+				if (isset($_SESSION["uang"]))
+				{
+					unset($_SESSION["uang"]);
+				}
+				else if(isset($_SESSION["liter"]))
+				{
+					unset($_SESSION["liter"]);
+				}*/
+
+			else if(isset($_POST["pesan"]))
+		{
+			$id_produk = $pecah["id_produk"];
+			
+			$tanggal_pemesanan = date("Y-m-d");
+			$kode = $hasil_1;
+			if (isset($_SESSION["uang"]))
+				{
+					$totalharga = $jumlah;
+					$totalliter = $subharga;
+				}
+			else if(isset($_SESSION["liter"]))
+				{
+					$totalharga = $subharga;
+					$totalliter = $jumlah;
+				}
+
+		
+			$sql->query("INSERT INTO pemesanan(id_produk, tanggal_pemesanan, kode_transaksi,total_pembelian, total_liter)
+				VALUES ('$id_produk','$tanggal_pemesanan','$kode','$totalharga','$totalliter')");
+
+
+				
+
+
+				//tampilan dialihkan ke halaman nota, nota dari pembelian tersebut
+
+				echo"<script>alert('pemesanan sukses');</script>";
+				echo"<script>alert('kode trasaksi anda : $kode');</script>";
+				echo"<script>location='index.php';</script>";
+			
+
+			// mengkosongkan keranjang belanja
+
+				unset($_SESSION["keranjang"]);
+				unset($_SESSION["jenis"]);
+				if (isset($_SESSION["uang"]))
+				{
+					unset($_SESSION["uang"]);
+				}
+				else if(isset($_SESSION["liter"]))
+				{
+					unset($_SESSION["liter"]);
+				}
+
+			
+		}
+	
 
 		?>

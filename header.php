@@ -23,15 +23,14 @@ $row = mysqli_fetch_assoc($result1);
 				<div class="row">
 					<div class="col">
 						<div class="header_content d-flex flex-row align-items-center justify-content-start">
-							<div class="logo"><a href="#">SIPBO.</a></div>
+							<div class="logo"><a href="#">SIPBO</a></div>
 							<nav class="main_nav">
 								<ul>
 									<li><a href="index.php">Home</a>
 									<?php if (isset($_SESSION["status"])== 'login'): ?>
-									<li><a href="checkout.php">Pembayaran</a>
+									<li><a href="isisaldo.php">Pengisian Saldo</a>
 									<?php endif ?>
-									<li><a href="halamansimulasi.php">Halaman Simulasi</a>
-									
+									<li><a href="halamansimulasi.php">Verifikasi</a>
 									
 									<?php if (isset($_SESSION["status"])== 'login'): ?>
 										<li> <a href="logout.php">Logout</a></li>
@@ -39,7 +38,7 @@ $row = mysqli_fetch_assoc($result1);
 										<li> <a href="login.php">Login</a></li>
 										<li> <a href="register.php">Daftar</a></li>
 									<?php endif ?>
-									<li><a href="contact.php">Contact</a></li>
+									
 								</ul>
 							</nav>
 							<div class="header_extra ml-auto">

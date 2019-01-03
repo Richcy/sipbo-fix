@@ -7,7 +7,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Halaman Verifikasi Kode</title>
+<title>Isi Saldo</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Sublime project">
@@ -36,44 +36,35 @@ session_start();
 		<br>
 		<form method ="post">
 			<center>
+				<h3>Masukkan jumlah saldo yang ingin anda top-up</h3>
+				<br>
 				<div class="col-md-6">
 					<div class = "input-group">
-						<input type="text" class = "form-control" placeholder="Masukkan kode transaksi anda" name = "kode">
+						<input type="number" min="10000" class = "form-control" placeholder="Minimal Rp. 10.000" name = "saldo">
 						<div class = "input-group-btn">
-							<button class = "btn btn-primary" name = "verifikasi">Verifikasi Kode</button>
+							<button class = "btn btn-primary" name = "topup">Top-Up</button>
+
+
 							<?php
 
-							if (isset($_POST['verifikasi'])) {
-							    $kode = $_POST['kode'];
-							    // Getting submitted user data from database
-							    
-							    $query = "SELECT * FROM pembelian WHERE kode_transaksi='$kode'";
-							    $result = mysqli_query($sql,$query);
-							    $check = mysqli_num_rows($result);
-							    if($check > 0) {
+							if (isset($_POST['topup'])) {
+								$id_pelanggan = $_SESSION["id"];
+							    $saldo = $_POST['saldo'];
+							    $tanggal_pengisian = date("Y-m-d");
+							    $untung = $saldo * (0.5/100);
+							    $harga = $saldo + $untung;
+							  
+							    	$sql->query("INSERT INTO isi_saldo
+										(id_pelanggan,tanggal_pengisian,jumlah_isisaldo,total_harga)
+										VALUES('$id_pelanggan','$tanggal_pengisian','$saldo','$harga') ");
 
-							        $row = mysqli_fetch_assoc($result);
-
-							        echo "<script>alert('Kode transaksi tersebut ada di database');</script>";
-							        
-							    }
-							 else
-							    {
-							        
-							        echo "<script>alert('Maaf, Kode transaksi tersebut tidak ada di database');</script>";
-							    }
+							    echo "<script>alert('pengisian sukses ,silahkan tunggu verifikasi admin')</script>";
+									echo"<script>location='index.php';</script>";
 							}
 							?>
 						</div>
 										
 					</div>
-
-					<p>id pembelian : <?php echo $row["id_pembelian"];?></p>
-					<p>nama pembeli : <?php echo $row["id_pelanggan"];?></p>
-					<p>nama produk : <?php echo $row["id_produk"];?></p>
-					<p>tanggal pembelian: <?php echo $row["tanggal_pembelian"];?></p>
-					<p>total pembelian : <?php echo $row["total_pembelian"];?></p>
-					<p>total liter : <?php echo $row["total_liter"];?></p>
 				</div>
 			</center>
 			

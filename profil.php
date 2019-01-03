@@ -94,7 +94,8 @@ $row = mysqli_fetch_assoc($result1);
                     </tbody>
                   </table>
                   <center>
-                     <a href="#" class="btn btn-primary">Histori Pembelian</a>
+                    <a href="historisaldo.php" class="btn btn-primary">Histori Pengisian Saldo</a>
+                    <a href="aktif.php" class="btn btn-primary">Histori Pembelian</a>
                   </center>
                  
                 
