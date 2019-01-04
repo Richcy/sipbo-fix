@@ -36,7 +36,7 @@ session_start();
 		<br>
 		<form method ="post">
 			<center>
-				<h3>Masukkan jumlah saldo yang ingin anda top-up</h3>
+				<h3>Masukkan jumlah saldo yang ingin anda Top-up</h3>
 				<br>
 				<div class="col-md-6">
 					<div class = "input-group">
