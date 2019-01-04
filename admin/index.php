@@ -61,6 +61,7 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="login.html" class="
                     <li> <a href="index.php?halaman=produk"><i class="fa fa-dashboard fa-3x"></i> Produk</a></li>
                     <li> <a href="index.php?halaman=pembelian"><i class="fa fa-dashboard fa-3x"></i> Pembelian</a></li>
                     <li> <a href="index.php?halaman=pelanggan"><i class="fa fa-dashboard fa-3x"></i> Pelanggan</a></li>
+                    <li> <a href="index.php?halaman=isisaldo"><i class="fa fa-dashboard fa-3x"></i> Isi Saldo</a></li>
                     <li> <a href="index.php?halaman=logout"><i class="fa fa-dashboard fa-3x"></i> Logout</a></li>
                      
                 </ul>
@@ -85,6 +86,14 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="login.html" class="
                     else if($_GET['halaman']=="pelanggan")
                     {
                         include 'pelanggan.php';
+                    }
+                    else if($_GET['halaman']=="isisaldo")
+                    {
+                        include 'isisaldo.php';
+                    }
+                    else if($_GET['halaman']=="updatesaldo")
+                    {
+                        include 'updatesaldo.php';
                     }
                     else if($_GET['halaman']=="logout")
                     {

@@ -6,7 +6,6 @@
 			<th>No</th>
 			<th>Nama Produk</th>
 			<th>Harga per Liter</th>
-			<th>Berat (gr)</th>
 			<th>Foto</th>
 			<th>Aksi</th>
 		</tr>
@@ -19,7 +18,6 @@
 			<td><?php echo $nomor; ?></td>
 			<td><?php echo $pecah['nama_produk']; ?></td>
 			<td><?php echo $pecah['harga_produk']; ?></td>
-			<td><?php echo $pecah['berat_produk']; ?></td>
 			<td>
 				<img src="../images/<?php echo $pecah['foto_produk']; ?>" width = "100"></td>
 			<td>
